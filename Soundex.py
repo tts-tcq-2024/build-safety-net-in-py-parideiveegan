@@ -1,4 +1,4 @@
-def get_soundex_code(c):
+def get_soundex_code(c,previous_char_value):    
     c = c.upper()
     mapping = {
         'B': '1', 'F': '1', 'P': '1', 'V': '1',
@@ -8,26 +8,28 @@ def get_soundex_code(c):
         'M': '5', 'N': '5',
         'R': '6'
     }
-    return mapping.get(c, '0')  # Default to '0' for non-mapped characters
+    value = mapping.get(c, '')
+    
+    if previous_char_value != value:
+        return value
+    return ''
 
+def get_sondexcode(name):
+    soundex = name[0].upper()
+    prev_char = ''
+    
+    for char in name[1:]:        
+        soundex += get_soundex_code(char,prev_char)
+        prev_char = soundex [-1]
+        if len(soundex) > 3:
+            break
+   
+    # Pad with zeros if necessary
+    soundex = soundex.ljust(4, '0')
+    return (soundex)
 
 def generate_soundex(name):
     if not name:
         return ""
 
-    # Start with the first letter (capitalized)
-    soundex = name[0].upper()
-    prev_code = get_soundex_code(soundex)
-
-    for char in name[1:]:
-        code = get_soundex_code(char)
-        if code != '0' and code != prev_code:
-            soundex += code
-            prev_code = code
-        if len(soundex) == 4:
-            break
-   
-    # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
-
-    return soundex
+    return (get_sondexcode(name))
