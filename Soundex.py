@@ -14,7 +14,7 @@ def get_soundex_code(c,previous_char_value):
         return value
     return ''
 
-def get_sondexcode(name):
+def convert_to_soundex(name):
     soundex = name[0].upper()
     prev_char = ''
     
@@ -32,4 +32,4 @@ def generate_soundex(name):
     if not name:
         return ""
 
-    return (get_sondexcode(name))
+    return (convert_to_soundex(name))
