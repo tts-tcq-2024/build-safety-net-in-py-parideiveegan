@@ -34,7 +34,7 @@ def remove_invalid_char(name):
 def get_sondexcode(name):
     
     soundex = name[0].upper()
-    prev_char = ''
+    prev_char = prev_char = get_soundex_code(soundex,'')
     
     for char in name[1:]:        
         soundex += get_soundex_code(char,prev_char)
