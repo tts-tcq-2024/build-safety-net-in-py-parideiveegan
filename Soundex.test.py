@@ -36,7 +36,7 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("      pr"), "P600")
         self.assertEqual(generate_soundex("w e lll d o one "), "W435")
         self.assertEqual(generate_soundex("GG"), "G000")
-        
+        self.assertEqual(generate_soundex("AEIOUWHY"), "A000")
 
     
 if __name__ == '__main__':
