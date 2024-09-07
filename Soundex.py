@@ -26,24 +26,28 @@ def pad_with_zero(soundex):
 def remove_invalid_char(name):
     name = name.upper()
     soundex_input = ""
-    for i in name[:]:
-        if 65<=ord(i) <=90:
-            soundex_input +=i
+    for char in name[:]:
+        if 65<=ord(char) <=90:
+            soundex_input += char
             
     return (check_null_string(soundex_input))
 
+def remove_consecutive_dupilcates(name):
+    
+    resized_input = name[0]
+    for char in name[1:]:
+        if char != resized_input[-1]:
+            resized_input += char
+    return (resized_input)        
     
 def get_sondexcode(name):
     
     soundex = name[0]
-    prev_char = get_soundex_code(soundex,'')
-    soundex_value = prev_char
-    code = ''
+    prev_char = ''
+
     for char in name[1:]:
-        code = get_soundex_code(char,prev_char)
-        soundex +=code
-        soundex_value += code
-        prev_char = soundex_value[-1]
+        soundex += get_soundex_code(char,prev_char)
+        prev_char = soundex[-1]
         if len(soundex) > 3:
             break
         
@@ -54,6 +58,7 @@ def generate_soundex(name):
     if not name:
         return ""
     name = remove_invalid_char(name)
+    name = remove_consecutive_dupilcates(name)
     if not (name):
         return pad_with_zero(name)
     
