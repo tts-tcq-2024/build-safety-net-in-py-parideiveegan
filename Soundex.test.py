@@ -35,7 +35,7 @@ class TestSoundex(unittest.TestCase):
     def test_size_of_sondex(self):
         self.assertEqual(generate_soundex("      pr"), "P600")
         self.assertEqual(generate_soundex("w e lll d o one "), "W435")
-        self.assertEqual(generate_soundex("G000"), "W000")
+        self.assertEqual(generate_soundex("GG"), "G000")
         
 
     
