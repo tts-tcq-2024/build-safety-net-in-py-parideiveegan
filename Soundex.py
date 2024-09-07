@@ -14,7 +14,25 @@ def get_soundex_code(c,previous_char_value):
         return value
     return ''
 
-def convert_to_soundex(name):
+def check_null_string(name):
+    if not name :
+        return ""
+    return name
+    
+def pad_with_zero(soundex):    
+    return (soundex.ljust(4, '0'))
+
+def remove_invalid_char(name):
+    name = name.upper()
+    soundex_input = ""
+    for i in name[:]:
+        if 65<=ord(i) <=90:
+            soundex_input +=i
+            
+    return (check_null_string(soundex_input))
+
+def get_sondexcode(name):
+    
     soundex = name[0].upper()
     prev_char = ''
     
@@ -23,13 +41,16 @@ def convert_to_soundex(name):
         prev_char = soundex [-1]
         if len(soundex) > 3:
             break
-   
-    # Pad with zeros if necessary
-    soundex = soundex.ljust(4, '0')
+    
+    #pad with zero if necessary     
+    soundex = pad_with_zero(soundex)
     return (soundex)
 
 def generate_soundex(name):
     if not name:
         return ""
-
-    return (convert_to_soundex(name))
+    name = remove_invalid_char(name)
+    if not (name):
+        return pad_with_zero(name)
+    
+    return (get_sondexcode(name))
