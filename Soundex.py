@@ -58,8 +58,8 @@ def generate_soundex(name):
     if not name:
         return ""
     name = remove_invalid_char(name)
-    name = remove_consecutive_dupilcates(name)
+    
     if not (name):
         return pad_with_zero(name)
-    
+    name = remove_consecutive_dupilcates(name)
     return (get_sondexcode(name))
