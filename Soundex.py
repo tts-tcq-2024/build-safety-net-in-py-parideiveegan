@@ -1,5 +1,5 @@
 def get_soundex_code(c,previous_char_value):    
-    c = c.upper()
+
     mapping = {
         'B': '1', 'F': '1', 'P': '1', 'V': '1',
         'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
@@ -19,7 +19,8 @@ def check_null_string(name):
         return ""
     return name
     
-def pad_with_zero(soundex):    
+def pad_with_zero(soundex):
+    
     return (soundex.ljust(4, '0'))
 
 def remove_invalid_char(name):
@@ -31,18 +32,21 @@ def remove_invalid_char(name):
             
     return (check_null_string(soundex_input))
 
+    
 def get_sondexcode(name):
     
-    soundex = name[0].upper()
-    prev_char = prev_char = get_soundex_code(soundex,'')
-    
-    for char in name[1:]:        
-        soundex += get_soundex_code(char,prev_char)
-        prev_char = soundex [-1]
+    soundex = name[0]
+    prev_char = get_soundex_code(soundex,'')
+    soundex_value = prev_char
+    code = ''
+    for char in name[1:]:
+        code = get_soundex_code(char,prev_char)
+        soundex +=code
+        soundex_value += code
+        prev_char = soundex_value[-1]
         if len(soundex) > 3:
             break
-    
-    #pad with zero if necessary     
+        
     soundex = pad_with_zero(soundex)
     return (soundex)
 
