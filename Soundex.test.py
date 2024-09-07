@@ -29,7 +29,7 @@ class TestSoundex(unittest.TestCase):
     def test_handel_consecutive_duplicte_char(self):
         self.assertEqual(generate_soundex("WWWWW"), "W000")
         self.assertEqual(generate_soundex("PAAWWW"), "P000")
-        self.assertEqual(generate_soundex("RRRpari"), "W000")
+        self.assertEqual(generate_soundex("RRRpari"), "R160")
     
     # to keep the length soundex to 4 irreseptive of any inupt expect NULL 
     def test_size_of_sondex(self):
