@@ -24,6 +24,7 @@ def pad_with_zero(soundex):
     return (soundex.ljust(4, '0'))
 
 def remove_invalid_char(name):
+    # to handel invalid characters ex. " !*,Pa"
     name = name.upper()
     soundex_input = ""
     for char in name[:]:
@@ -33,7 +34,7 @@ def remove_invalid_char(name):
     return (check_null_string(soundex_input))
 
 def remove_consecutive_dupilcates(name):
-    
+    #removing consecutive ex. PPRRai
     resized_input = name[0]
     for char in name[1:]:
         if char != resized_input[-1]:
@@ -41,7 +42,7 @@ def remove_consecutive_dupilcates(name):
     return (resized_input)        
     
 def get_sondexcode(name):
-    
+    #get the soundex code after the refactor
     soundex = name[0]
     prev_char = ''
 
@@ -50,7 +51,7 @@ def get_sondexcode(name):
         prev_char = soundex[-1]
         if len(soundex) > 3:
             break
-        
+    #pad with zero if nessecary     
     soundex = pad_with_zero(soundex)
     return (soundex)
 
