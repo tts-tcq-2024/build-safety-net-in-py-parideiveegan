@@ -1,0 +1,101 @@
+SNO,ID,Test Case Name,Objective,Input,Expected output
+1,TST_1_0,Empty strings as input,To check wether empty string are handeld,"Empty is string is given as input  
+
+input:
+generate_soundex("""")","returns empty string
+
+output:
+"""""
+2,TST_2_0,Remove Invalid character in the string,"Validate the Soundex algorithm's ability to handle strings with non-alphabetic characters.
+Ensure proper removal of invalid characters and correct Soundex encoding of the remaining valid characters.","Input strings with a combination of alphabetic and non-alphabetic characters
+
+input:
+generate_soundex("" P1a!ri"")","After invalid characters are removed, the remaining valid characters should be encoded correctly according to the Soundex rules.
+
+output:
+""P600""
+
+
+"
+3,TST_2_1,Handling Input Strings with Only Invalid Characters,"To verifyThe final Soundex code should be a default value (e.g., ""0000"") when the input string consists solely of invalid characters.","Strings that contain only invalid characters such as special symbols, numbers, or whitespace.
+
+Input:
+generate_soundex(""12%$^"")","The final Soundex code should be a default value (e.g., ""0000"") when the input string consists solely of invalid characters.
+
+Input:
+""0000"""
+4,TST_3_0,Handling only single character as input,To verify The final Soundex code should consist of the single character followed by zeros.,"Strings containing only a single valid character.
+
+Input:
+generate_soundex(""P"")","The final Soundex code should consist of the single character followed by zeros.
+Confirm that consonants 'P' is correctly encoded, and padded with zeros.
+Output:
+""P000"""
+5,TST_4_0,Handling Vowels in the Soundex Algorithm ,"Verify that vowels (A, E, I, O, U) within the string are ignored when converting to the Soundex code, except when the first letter is a vowel.
+Ensure proper encoding of consonants following the Soundex algorithm rules.","Strings with various combinations of vowels and consonants.
+
+input:
+generate_soundex(""pari"")","Any vowels (A, E, I, O, U) within the string, except the first letter, should be ignored when converting the string to Soundex code.
+The Soundex code should be padded to 4 characters with zeros if necessary.
+Confirm that consonants 'P' and 'R' are correctly encoded, with vowels correctly separating them.
+output:
+""P600"""
+6,TST_4_1,Handling vowel as first letter  ,"1)  Test cases where the first letter is a vowel (A, E, I, O, U).
+2) Ensure proper encoding according to the Soundex rules.
+3) Validate that the vowel is retained as the first letter and                 the correct encoding for the subsequent characters is returned.","Strings with vowels as the first character.
+
+input:
+generate_soundex(""Oliver"")","The first letter of the input string should be retained in the Soundex code, even if it is a vowel.
+Test where the first letter is ""O"". Check for proper retention of the vowel and correct encoding of the rest of the name.
+output:
+""O416""
+"
+7,TST_5_0,Handling Adjacent Letters with the Same Number,"Ensure that the Soundex algorithm correctly processes adjacent letters with the same number, retaining only the first occurrence and ignoring the rest.
+","Strings where two or more adjacent letters map to the same Soundex number.
+
+input:
+generate_soundex("" Butter"")","Only the first occurrence of adjacent letters with the same Soundex number should be retained in the encoded result.
+Subsequent adjacent letters with the same number should be ignored.
+
+Verify that adjacent ""T"" letters are reduced to a single ""T"".
+
+output:
+""B360""
+
+"
+8,TST_6_0," Letters with the Same Number Separated by 'H', 'W' , 'Y'","Ensure that letters separated by 'H', 'W', or 'Y' and having the same Soundex number are combined into a single number during encoding.","Strings where letters with the same Soundex number are separated by 'H', 'W', or 'Y'.
+
+input:
+generate_soundex(""Ashcraft"")","The final Soundex code should consolidate letters with the same number into a single digit, if separation by 'H', 'W', or 'Y'.
+
+Verify that 'S' and 'C' (both mapped to 2) are treated as one, as its separation by 'H' and 'W'.
+output:
+""A261"""
+9,TST_7_0, Letters with the Same Number Separated by a Vowel,"Ensure that letters with the same Soundex number, separated by a vowel, are each encoded as their respective numbers in the final Soundex code.
+Verify that the Soundex algorithm does not combine these numbers but includes each occurrence.","Strings with pairs of letters that map to the same Soundex number, separated by vowels.
+
+Input:
+generate_soundex(""Tymczak"")
+","Each letter with the same Soundex number should be included in the final code, even if separated by a vowel.
+Verify that chars 'z' and 'k' in the name are coded as 2 twice since a vowel lies in between them
+Output:
+""T522"""
+10,TST_9_0,Handling Number of Digits in the Soundex Code,"Ensure that the Soundex code is always a 4-character string.
+Append zeros if there are fewer than three digits in the code.
+Retain only the first three digits if there are four or more digits.","Names or words producing Soundex codes with fewer than three digits, exactly three digits, or more than three digits.
+
+input:
+generate_soundex(""All"")","The final Soundex code should always be a 4-character string, with appropriate formatting based on the number of digits.
+Verify that fewer than three digits result in appending zeros and the letters encoed accroding to sondex.
+output:
+""A400"""
+11,TST_9_1,Letter as the first in the Soundex Code,"Ensure that the first letter of the input string is preserved as the first character in the Soundex code.
+The letter should be capitalized.
+Check that the Soundex code follows the rules for digit encoding and formatting after the initial letter.","Names or words with various starting letters to test the preservation of the first character.
+
+input:
+generate_soundex(""Pari"")","The final Soundex code should begin with the initial letter of the input string, followed by encoded digits formatted to a 4-character string.
+
+output:
+""P600"""
+,,,,,
