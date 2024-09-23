@@ -28,17 +28,23 @@ class TestSoundex(unittest.TestCase):
 
     def RetursSondexCodeRemovingVowelsInInput(self):
         self.assertEqual(generate_soundex("WWWWW"), "W000")
-        self.assertEqual(generate_soundex("PAAWWW"), "P000")   
+        self.assertEqual(generate_soundex("PAAWWW"), "P000")
+        
     def ReturnsSoundexCodeFirstCharReservedForVowelasFirstChar(self):
         self.assertEqual(generate_soundex("RRRpari"), "R160")
+        
     def ReturnsSoundexCodeIgnoringReptedLettersInInput(self):
-        self.assertEqual(generate_soundex("Butter"), "B360")    
+        self.assertEqual(generate_soundex("Butter"), "B360")
+        
     def ReturnsSoundexCodeIgnoringCosecutivelettersSepratedByHWYInInput(self):
         self.assertEqual(generate_soundex("Ashcraft"), "A261")
+        
     def ReturnsSoundexCodeReservingCosecutivelettersSepratedByVowelsInInput(self):
         self.assertEqual(generate_soundex("Tymczak"), "T522")
+        
     def ReturnsSoundexCodeLimitingCodeLengthToFourByPaddingZeroOrTruncating(self):
         self.assertEqual(generate_soundex("All"), "A400")
+        
     def ReturnsSoundexCodeKeppingTheFirstLetterSameAsInTheInput(self):
         self.assertEqual(generate_soundex("Pari"), "P600")
     
