@@ -37,7 +37,7 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("Ashcraft"), "A261")
     def ReturnsSoundexCodeReservingCosecutivelettersSepratedByVowelsInInput(self):
         self.assertEqual(generate_soundex("Tymczak"), "T522")
-    def ReturnsSoundexCodeLimitingCodeLengthToFourByPaddingZeroOrTruncating(Self):
+    def ReturnsSoundexCodeLimitingCodeLengthToFourByPaddingZeroOrTruncating(self):
         self.assertEqual(generate_soundex("All"), "A400")
     def ReturnsSoundexCodeKeppingTheFirstLetterSameAsInTheInput(self):
         self.assertEqual(generate_soundex("Pari"), "P600")
