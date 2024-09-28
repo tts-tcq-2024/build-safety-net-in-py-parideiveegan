@@ -103,4 +103,5 @@ def generate_soundex(name):
         return pad_with_zero(name)
     name = remove_consecutive_dupilcates(name)
     name = remove_same_letters_sepratedbyHYW(name)
+    name = remove_invalid_char(name)
     return (get_sondexcode(name))
