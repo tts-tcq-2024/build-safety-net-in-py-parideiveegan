@@ -38,7 +38,7 @@ def remove_same_letters_sepratedbyHYW(name):
     char = ""
     refactored_string = name[0]
     index = 1
-    while index < len(name)-2:
+    while index <= len(name)-2:
         char = name[index]
         char = check_char(char,name,vowels,index)
         refactored_string +=char
