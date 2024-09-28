@@ -36,10 +36,10 @@ class TestSoundex(unittest.TestCase):
     def test_ReturnsSoundexCodeIgnoringReptedLettersInInput(self):
         self.assertEqual(generate_soundex("Butter"), "B360")
         
-    def test_ReturnsSoundexCodeIgnoringCosecutivelettersSepratedByHWYInInput(self):
+    def test_ReturnsSoundexCodeIgnoringCosecutivelettersofSameCodeSepratedByHWYInInput(self):
         self.assertEqual(generate_soundex("Ashcraft"), "A261")
         
-    def test_ReturnsSoundexCodeReservingCosecutivelettersSepratedByVowelsInInput(self):
+    def test_ReturnsSoundexCodeReservingCosecutivelettersofSameCodeSepratedByVowelsInInput(self):
         self.assertEqual(generate_soundex("Tymczak"), "T522")
         
     def test_ReturnsSoundexCodeLimitingCodeLengthToFourByPaddingZeroOrTruncating(self):
