@@ -27,8 +27,8 @@ def remove_consecutive_dupilcates(name):
 
 # retruns empty string if char is eqal to H,Y,W 
 def check_char_HYW(char,name,vowels,index,mapping):
-    previous_char_value = mapping.value(name[index-1],0)
-    next_char_value = mapping.value(name[index+1],0)
+    previous_char_value = mapping.value(name[index-1],'0')
+    next_char_value = mapping.value(name[index+1],'0')
     if char in vowels:
         if previous_char_value == next_char_value:
             return " "
@@ -59,8 +59,8 @@ def remove_same_letters_sepratedbyHYW(name):
     return refactored_string
     
 def check_char_value(char,name,mapping,index):
-    char_value = mapping.value(name[index])
-    previous_char_value = mapping.value(name[index-1])
+    char_value = mapping.value(name[index],'0')
+    previous_char_value = mapping.value(name[index-1],'0')
     if char_value == previous_char_value:
         return ''
     return char_value
@@ -79,7 +79,7 @@ def get_sondexcode(name):
     soundex = name[0]
     index = 1
     char = ''
-    while index < len(name)-1:
+    while index <= len(name)-1:
         char = name[index]
         soundex += check_char_value(char,name,mapping,index)
         index +=1
