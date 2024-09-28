@@ -57,9 +57,11 @@ def remove_same_letters_sepratedbyHYW(name):
         index+=1
     refactored_string += name[-1]
     return refactored_string
-    
-def check_char_value(char,name,mapping,index):
+
+def chek_char_vowel(vowels,char)    
+def check_char_value(char,name,mapping,index,vowels):
     char_value = mapping.get(name[index],'0')
+    if chek_char_vowel
     previous_char_value = mapping.get(name[index-1],'0')
     if char_value == previous_char_value:
         return ''
@@ -75,13 +77,13 @@ def get_sondexcode(name):
         'M': '5', 'N': '5',
         'R': '6'
     }
-    
+    vowels = ["A","E","I","O","U"]
     soundex = name[0]
     index = 1
     char = ''
     while index <= len(name)-1:
         char = name[index]
-        soundex += check_char_value(char,name,mapping,index)
+        soundex += check_char_value(char,name,mapping,index,vowels)
         index +=1
         if len(soundex) > 3:
             break
