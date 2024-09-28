@@ -26,25 +26,28 @@ def remove_consecutive_dupilcates(name):
     return (resized_input)        
 
 # retruns empty string if char is eqal to H,Y,W 
-def check_char(char,name,vowels):    
+def check_char(char,name,vowels,index):    
     if char in vowels:
+        if name[index-1]==name[index+1]:
+            return " "
         return ""
     return char
 # Remove same latters seprated by H,Y,W    
 def remove_same_letters_sepratedbyHYW(name):
     vowels = ["H","Y", "W"]
     char = ""
-    refactored_string = ""
-    index = 0
-    while index < len(name)-1:
+    refactored_string = name[0]
+    index = 1
+    while index < len(name)-2:
         char = name[index]
-        char = check_char(char,name,vowels)
+        char = check_char(char,name,vowels,index)
         refactored_string +=char
-        if not char :
+        if char == " " :
             index+=1
         index+=1
+    refactored_string += name[-1]
     return refactored_string
-
+    
 def get_sondexcode(name):
     #get the soundex code after the refactor
     mapping = {
