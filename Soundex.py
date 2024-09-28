@@ -26,21 +26,31 @@ def remove_consecutive_dupilcates(name):
     return (resized_input)        
 
 # retruns empty string if char is eqal to H,Y,W 
-def check_char(char,name,vowels,index):    
+def check_char(char,name,vowels,index,mappping):
+    previous_char_value = mapping.value(name[index-1],0)
+    next_char_value = mapping.value(name[index+1],0)
     if char in vowels:
-        if name[index-1]==name[index+1]:
+        if previous_char_value == next_char_value:
             return " "
         return ""
     return char
 # Remove same latters seprated by H,Y,W    
 def remove_same_letters_sepratedbyHYW(name):
+    mapping = {
+        'B': '1', 'F': '1', 'P': '1', 'V': '1',
+        'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
+        'D': '3', 'T': '3',
+        'L': '4',
+        'M': '5', 'N': '5',
+        'R': '6'
+    }
     vowels = ["H","Y", "W"]
     char = ""
     refactored_string = name[0]
     index = 1
     while index <= len(name)-2:
         char = name[index]
-        char = check_char(char,name,vowels,index)
+        char = check_char(char,name,vowels,index,mapping)
         refactored_string +=char
         if char == " " :
             index+=1
