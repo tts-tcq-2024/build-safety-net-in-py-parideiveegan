@@ -1,19 +1,3 @@
-def get_soundex_code(c,previous_char_value):    
-
-    mapping = {
-        'B': '1', 'F': '1', 'P': '1', 'V': '1',
-        'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
-        'D': '3', 'T': '3',
-        'L': '4',
-        'M': '5', 'N': '5',
-        'R': '6'
-    }
-    value = mapping.get(c, '')
-    
-    if previous_char_value != value:
-        return value
-    return ''
-
 def check_null_string(name):
     if not name :
         return ""
@@ -40,15 +24,41 @@ def remove_consecutive_dupilcates(name):
         if char != resized_input[-1]:
             resized_input += char
     return (resized_input)        
-    
+
+# retruns empty string if char is eqal to H,Y,W 
+def check_char(char,name,vowels):    
+    if char in vowels:
+        return ""
+    return char
+# Remove same latters seprated by H,Y,W    
+def remove_same_letters_sepratedbyHYW(name):
+    vowels = ["H","Y", "W"]
+    char = ""
+    refactored_string = ""
+    index = 0
+    while index < len(name)-1:
+        char = name[index]
+        char = check_char(char,name,vowels)
+        refactored_string +=char
+        if not char :
+            index+=1
+        index+=1
+    return refactored_string
+
 def get_sondexcode(name):
     #get the soundex code after the refactor
+    mapping = {
+        'B': '1', 'F': '1', 'P': '1', 'V': '1',
+        'C': '2', 'G': '2', 'J': '2', 'K': '2', 'Q': '2', 'S': '2', 'X': '2', 'Z': '2',
+        'D': '3', 'T': '3',
+        'L': '4',
+        'M': '5', 'N': '5',
+        'R': '6'
+    }
+    
     soundex = name[0]
-    prev_char = ''
-
     for char in name[1:]:
-        soundex += get_soundex_code(char,prev_char)
-        prev_char = soundex[-1]
+        soundex += mapping.get(char, '')
         if len(soundex) > 3:
             break
     #pad with zero if nessecary     
@@ -63,4 +73,5 @@ def generate_soundex(name):
     if not (name):
         return pad_with_zero(name)
     name = remove_consecutive_dupilcates(name)
+    name = remove_same_letters_sepratedbyHYW(name)
     return (get_sondexcode(name))
