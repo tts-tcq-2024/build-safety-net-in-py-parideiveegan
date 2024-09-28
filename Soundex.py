@@ -26,7 +26,7 @@ def remove_consecutive_dupilcates(name):
     return (resized_input)        
 
 # retruns empty string if char is eqal to H,Y,W 
-def check_char(char,name,vowels,index,mappping):
+def check_char(char,name,vowels,index,mapping):
     previous_char_value = mapping.value(name[index-1],0)
     next_char_value = mapping.value(name[index+1],0)
     if char in vowels:
