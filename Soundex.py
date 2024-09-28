@@ -26,7 +26,7 @@ def remove_consecutive_dupilcates(name):
     return (resized_input)        
 
 # retruns empty string if char is eqal to H,Y,W 
-def check_char(char,name,vowels,index,mapping):
+def check_char_HYW(char,name,vowels,index,mapping):
     previous_char_value = mapping.value(name[index-1],0)
     next_char_value = mapping.value(name[index+1],0)
     if char in vowels:
@@ -50,13 +50,20 @@ def remove_same_letters_sepratedbyHYW(name):
     index = 1
     while index <= len(name)-2:
         char = name[index]
-        char = check_char(char,name,vowels,index,mapping)
+        char = check_char_HYW(char,name,vowels,index,mapping)
         refactored_string +=char
         if char == " " :
             index+=1
         index+=1
     refactored_string += name[-1]
     return refactored_string
+    
+def check_char_value(char,name,mapping,index):
+    char_value = mapping.value(name[index])
+    previous_char_value = mapping.value(name[index-1])
+    if char_value == previous_char_value:
+        return ''
+    return char_value
     
 def get_sondexcode(name):
     #get the soundex code after the refactor
@@ -70,10 +77,13 @@ def get_sondexcode(name):
     }
     
     soundex = name[0]
-    for char in name[1:]:
-        soundex += mapping.get(char, '')
+    index = 1
+    while index < len(name)-1:  
+        soundex += check_char_value(char,name,mapping,index)
+        index +=1
         if len(soundex) > 3:
             break
+        
     #pad with zero if nessecary     
     soundex = pad_with_zero(soundex)
     return (soundex)
