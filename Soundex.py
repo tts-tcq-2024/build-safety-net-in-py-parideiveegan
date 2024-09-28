@@ -61,8 +61,8 @@ def check_previous_vowel(char,vowels):
     return char in vowels
     
 def check_char_value(char,name,mapping,index,vowels):
-    char_value = mapping.get(name[index],'0')
-    previous_char_value = mapping.get(name[index-1],'0')
+    char_value = mapping.get(name[index],'')
+    previous_char_value = mapping.get(name[index-1],'')
     if check_previous_vowel(name[index-1],vowels):
         return char_value    
     if char_value == previous_char_value:
