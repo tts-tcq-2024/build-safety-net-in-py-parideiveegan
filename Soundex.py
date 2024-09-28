@@ -78,6 +78,7 @@ def get_sondexcode(name):
     
     soundex = name[0]
     index = 1
+    char = ''
     while index < len(name)-1:
         char = name[index]
         soundex += check_char_value(char,name,mapping,index)
