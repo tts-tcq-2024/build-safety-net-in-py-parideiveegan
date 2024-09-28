@@ -25,6 +25,9 @@ def remove_consecutive_dupilcates(name):
             resized_input += char
     return (resized_input)        
 
+""""
+Two letters with the same number separated by 'h', 'w' or 'y' are coded as a single number
+""""
 # retruns empty string if char is eqal to H,Y,W 
 def check_char_HYW(char,name,vowels,index,mapping):
     previous_char_value = mapping.get(name[index-1],'0')
@@ -57,10 +60,15 @@ def remove_same_letters_sepratedbyHYW(name):
         index+=1
     refactored_string += name[-1]
     return refactored_string
+
+""""
+two letters with the same number separated by a vowel are coded twice. This rule also applies to the first letter.
+""""
+
 def check_previous_vowel(char,vowels):
     return char in vowels
     
-def check_char_value(char,name,mapping,index,vowels):
+def check_char_value(char,name,mapping,index,vowels):    
     char_value = mapping.get(name[index],'')
     previous_char_value = mapping.get(name[index-1],'')
     if check_previous_vowel(name[index-1],vowels):
