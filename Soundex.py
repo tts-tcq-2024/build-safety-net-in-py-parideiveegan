@@ -57,12 +57,14 @@ def remove_same_letters_sepratedbyHYW(name):
         index+=1
     refactored_string += name[-1]
     return refactored_string
-
-def chek_char_vowel(vowels,char)    
+def check_previous_vowel(char,vowels):
+    return char in vowels
+    
 def check_char_value(char,name,mapping,index,vowels):
     char_value = mapping.get(name[index],'0')
-    if chek_char_vowel
     previous_char_value = mapping.get(name[index-1],'0')
+    if check_previous_vowel(name[index-1],vowels):
+        return char_value    
     if char_value == previous_char_value:
         return ''
     return char_value
